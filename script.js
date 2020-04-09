@@ -9,13 +9,13 @@ var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery= 'https://api.coinranking.com/v1/public/coin/'+coinID+'?base=USD&timePeriod=7d'
 ///////// get exchange rates for coins  ////////
 
-// $.ajax({ 
-//     url: exQuery,
-//     method: "GET"
-// }).then(function (response) {
-//     console.log(response);
+$.ajax({ 
+    url: exQuery,
+    method: "GET"
+}).then(function (response) {
+    console.log(response);
     
-// });
+});
 
 ///////get cryptocoin pricing base USD  ///////////
 $.ajax({ 
