@@ -11,7 +11,7 @@ $("button").on("click", function (event) {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-
+    console.log(response);
     // Loop through the array and display three articles
     for (var i = 0; i < response.articles.length; i++) {
 
@@ -29,6 +29,15 @@ $("button").on("click", function (event) {
 
       var article = response.articles[i].content;
       $("#article" + i).text(article);
+    
+
+      var image = response.articles[i].urlToImage;
+      $("#image" + i).html("<img src = '" + image + "'>");
+      
+    
+    
+    
+    
     }
   });
 });
