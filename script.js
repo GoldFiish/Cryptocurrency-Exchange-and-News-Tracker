@@ -12,6 +12,7 @@ $("button").on("click", function (event) {
     method: "GET"
   }).then(function (response) {
 
+    // Loop through the array and display three articles
     for (var i = 0; i < response.articles.length; i++) {
 
       var title = response.articles[i].title;
