@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <!--Import materialize.css-->
+      <!-- <link type="text/css" rel="stylesheet" href="../css/materialize.css"  media="screen,projection"/> -->
+
+      <!-- custom css -->
+      <!-- <link type="text/css" rel="stylesheet" href="../css/style.css"  media="screen,projection"/> -->
+
+      <!--optimized mobile-->
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <title>CryptoCurrency Exchange and News Tracker</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+    <!-- navigation -->
+    <nav class="nav-wrapper">
+        <a href="#" class="brand-logo right">Logo</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">New Articles</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- banner -->
+    <header class="header-container">
+        <h1 class="header center banner-head">CryptoCurrency Exchange</h1>
+    </header>
+     
+    <!-- input form -->
+    <form class="input-container">
+    <div class="row" id="currencyInput">
+        <div class="input-field col s12 m6">
+            <input value="1" type="number" class="currency">
+            <select class="browser-default" id="currency-opt">
+                <option value="usd">United States Dollar</option>
+                <option value="cad">Canadian Dollar</option>
+                <option value="euro">Euro</option>
+                <option value="won">South Korean Won</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="row" id="cryptoInput">
+        <div class="input-field col s12 m6">
+            <input value="1" type="number" class="cryptocurrency">
+            <select class="browser-default" id="crypto-opt">
+                <option value="btc">Bitcoin</option>
+                <option value="ltc">Litecoin</option>
+                <option value="eth">Ethereum</option>
+                <option value="xrp">Ripple</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+    </form>
+
+    <!-- line chart -->
+
+    <!-- articles -->
+    <div class="article-container">
+        <div class="row" id="new-articles">
+            <div class="col s12 m4">
+              <div class="article">
+                <h2 class="center brown-text"><i class="material-icons">new_releases</i></h2>
+                <h5 class="center">Article 1</h5>
+                
+                <div id="title0"></div>
+                <div id="author0"></div>
+                <div id="source0"></div>
+                <div id="pubDate0"></div>
+                <p class="article1" id="article0"></p>
+                            
+            </div>
+            </div>
+    
+            <div class="col s12 m4">
+              <div class="article">
+                <h2 class="center brown-text"><i class="material-icons">new_releases</i></h2>
+                <h5 class="center">Article 2</h5>
+
+                <div id="title1"></div>
+                <div id="author1"></div>
+                <div id="source1"></div>
+                <div id="pubDate1"></div>
+                <p class="article2" id="article1"></p>
+    
+              </div>
+            </div>
+    
+            <div class="col s12 m4">
+              <div class="article">
+                <h2 class="center brown-text"><i class="material-icons">new_releases</i></h2>
+                <h5 class="center">Article 3</h5>
+
+                <div id="title2"></div>
+                <div id="author2"></div>
+                <div id="source2"></div>
+                <div id="pubDate2"></div>
+                <p class="article3" id="article2"></p>
+                    
+              </div>
+            </div>
+          </div>
+    </div>
+
+
+    <!--JavaScript at end of body for optimized loading-->
+      <!-- <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="./js/script.js"></script> -->
+      <script src="./script.js"></script>
+    </body>
+  </html>
