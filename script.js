@@ -127,6 +127,7 @@ $("button").on("click", function (event) {
   cryptoCurrency = cryptoCurrency.slice(0, 3);
   console.log(cryptoCurrency);
   console.log(exchangeCurrency);
+
   exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
 
 
@@ -135,11 +136,10 @@ $("button").on("click", function (event) {
     method: "GET"
   }).then(function (response) {
     // console.log(response);
+
     var currencyRate = parseFloat(response.rates[exchangeCurrency]).toFixed(3);
     localStorage.setItem('currencyRate', JSON.stringify(currencyRate));
     result = JSON.parse(localStorage.getItem('cryptoInfo'));
-
-
 
     for (let i = 0; i < result.data.coins.length; i++) {
       if (result.data.coins[i].symbol === cryptoCurrency) {
@@ -151,28 +151,29 @@ $("button").on("click", function (event) {
 
     }
 
-    // var currencyRate = JSON.parse(localStorage.getItem('currencyRate'));
-    // cryptoRate = JSON.parse(localStorage.getItem('cryptoRate'));
-    console.log(currencyRate);
-    console.log(cryptoRate);
-
-
-
     if (cryptoCurrencyAmt === 0) {
       cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
       console.log(cryptoCurrencyAmt);
       $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
 
+    } else if (currencyAmt === 0) {
+      currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
+      console.log(currencyAmt);
+      console.log(typeof currencyAmt)
+      $('.currency').val(parseFloat(currencyAmt).toFixed(3));
+    }else{
+      alert('Please Enter Amount of Currency or Cryptocurrency')
+
     }
-    
-  })
-
-
-
-
-
 
   })
+
+
+
+
+
+
+})
 
 
 
