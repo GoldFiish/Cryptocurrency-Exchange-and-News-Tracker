@@ -41,7 +41,7 @@ $.ajax({
 }).then(function (response) {
   var result = response;
   var len = result.data.coins.length;
-  localStorage.setItem('cryptoInfo',JSON.stringify(result))
+  localStorage.setItem('cryptoInfo', JSON.stringify(result))
   console.log(result)
   for (let i = 0; i < len; i++) {
 
@@ -117,55 +117,62 @@ $("button").on("click", function (event) {
 
   exchangeCurrency = $('#currency-opt').val();
   var currencyAmt = $('.currency').val();
-  currencyAmt=parseInt(currencyAmt);
-  var cryptoCurrencyAmt =$('.cryptocurrency').val();
-  cryptoCurrencyAmt=parseInt(cryptoCurrencyAmt);
+  currencyAmt = parseInt(currencyAmt);
+  var cryptoCurrencyAmt = $('.cryptocurrency').val();
+  cryptoCurrencyAmt = parseInt(cryptoCurrencyAmt);
   var cryptoCurrency = $('#crypto-opt').val();
 
-  if (cryptoCurrencyAmt === 0) {
-  exchangeCurrency=  exchangeCurrency.slice(0,3);
-  cryptoCurrency=cryptoCurrency.slice(0,3);
+
+  exchangeCurrency = exchangeCurrency.slice(0, 3);
+  cryptoCurrency = cryptoCurrency.slice(0, 3);
   console.log(cryptoCurrency);
   console.log(exchangeCurrency);
-  exQuery ='https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
-  
-  
+  exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
+
+
   $.ajax({
     url: exQuery,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
-    var rateConversion = parseFloat(response.rates[exchangeCurrency]).toFixed(3);
-      localStorage.setItem('currencyRate',JSON.stringify(rateConversion));
-    result =  JSON.parse(localStorage.getItem('cryptoInfo'))
-    // console.log(result);
+    // console.log(response);
+    var currencyRate = parseFloat(response.rates[exchangeCurrency]).toFixed(3);
+    localStorage.setItem('currencyRate', JSON.stringify(currencyRate));
+    result = JSON.parse(localStorage.getItem('cryptoInfo'));
 
-    for(let i=0; i<result.data.coins.length; i++){
-      if(result.data.coins[i].symbol===cryptoCurrency){
-       var cryptoRate = result.data.coins[i].price;
-       console.log(cryptoRate);
-        localStorage.setItem('cryptoRate',cryptoRate)
+
+
+    for (let i = 0; i < result.data.coins.length; i++) {
+      if (result.data.coins[i].symbol === cryptoCurrency) {
+        cryptoRate = result.data.coins[i].price;
+        console.log(cryptoRate);
+        localStorage.setItem('cryptoRate', cryptoRate)
+        break
       }
 
+    }
 
+    // var currencyRate = JSON.parse(localStorage.getItem('currencyRate'));
+    // cryptoRate = JSON.parse(localStorage.getItem('cryptoRate'));
+    console.log(currencyRate);
+    console.log(cryptoRate);
+
+
+
+    if (cryptoCurrencyAmt === 0) {
+      cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
+      console.log(cryptoCurrencyAmt);
+      $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
 
     }
-      
-      
-  });
-
-  
-  
+    
+  })
 
 
 
 
 
 
-  
-  } else {
-
-  }
+  })
 
 
 
@@ -176,4 +183,5 @@ $("button").on("click", function (event) {
 
 
 
-});
+
+
