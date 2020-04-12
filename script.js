@@ -17,14 +17,14 @@ var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
 /////// get exchange rates for coins  ////////
 
-$.ajax({
-  url: exQuery,
-  method: "GET"
-}).then(function (response) {
-  console.log(response);
+// $.ajax({
+//   url: exQuery,
+//   method: "GET"
+// }).then(function (response) {
+//   console.log(response);
 
 
-});
+// });
 
 
 
@@ -48,7 +48,7 @@ $.ajax({
     var coinID = result.data.coins[i].id;
     var coinName = result.data.coins[i].name;
     var coinSymbol = result.data.coins[i].symbol;
-    var newOption = $('<option>').text(coinName + ' ' + coinSymbol);
+    var newOption = $('<option>').text(coinSymbol + ' ' + coinName);
     $('#crypto-opt').append(newOption);
 
   }
@@ -124,6 +124,9 @@ $("button").on("click", function (event) {
 
   if (cryptoCurrencyAmt === 0) {
   exchangeCurrency=  exchangeCurrency.slice(0,3);
+  cryptoCurrency=cryptoCurrency.slice(0,3);
+  console.log(cryptoCurrency);
+  console.log(exchangeCurrency);
   exQuery ='https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
   
   
@@ -132,10 +135,32 @@ $("button").on("click", function (event) {
     method: "GET"
   }).then(function (response) {
     console.log(response);
-    var rateConversion = parseFloat(response.rates[Object.keys(response.rates)[0]]).toFixed(3);
+    var rateConversion = parseFloat(response.rates[exchangeCurrency]).toFixed(3);
       localStorage.setItem('currencyRate',JSON.stringify(rateConversion));
+    result =  JSON.parse(localStorage.getItem('cryptoInfo'))
+    // console.log(result);
+
+    for(let i=0; i<result.data.coins.length; i++){
+      if(result.data.coins[i].symbol===cryptoCurrency){
+       var cryptoRate = result.data.coins[i].price;
+       console.log(cryptoRate);
+        localStorage.setItem('cryptoRate',cryptoRate)
+      }
+
+
+
+    }
+      
       
   });
+
+  
+  
+
+
+
+
+
 
   
   } else {
