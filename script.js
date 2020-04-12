@@ -3,11 +3,19 @@
 var apiKey = null;
 var cryptCoin =null;
 var exchangeCurrency= 'PHP';
-var coinID='1'
+var coinID=null;
+var coinName=null;
+var coinSymbol=null;
+var coinPrice = null;
+var currencyArr=[['CAD', 'CANADIAN DOLLAR'],['HKD','HONK KONG DOLLAR'],['ISK','ICELANDIC KRONA'],['PHP','PHILIPPINE PESO'],['DKK','DANISH KRONA'],['HUF','FUNGARIAN FORINT'],['CZK','CZECH KORUNA'],['GBP','POUND STERLING'],['RON','ROMANIAN LEU'],['SEK','SWEDISH KRONA'],['IDR','INDONESIAN RUPIAH'],['INR','INDIAN RUPEE'],['BRL','BRAZILIAN REAL'],['RUB','RUSSIAN RUBLE'],['HRK','CROATIAN KUNA'],['JPY','JAPANESE YEN'],['THB','THAI BHAT'],['CHF','SWISS FRANC'],['EUR','EURO'],['MYR','MALAYSIAN RINGGIT'],['BGN','BULGARIAN LEV'],['TRY','TURKISH LIRA'],['CNY','CHINESE YUAN'],['NOK','NORWEFIAN KRONE'],['NZD','NEW ZEALAND DOLLAR'],['ZAR','SOUTH AFRICAN RAND'],['USD','UNITED STATES DOLLAR'],['MXN','MEXICAN PESO'],['SGD','SINGAPORE DOLLAR'],['AUD','AUSTRALIAN DOLLAR'],['ILS','ISRAELI NEW SHEKEL'],['KRW','SOUTH KOREAN WON'],['PLN','POLAND ZLOTY']]
+
+
+
+
 var exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,'+exchangeCurrency;
 var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery= 'https://api.coinranking.com/v1/public/coin/'+coinID+'?base=USD&timePeriod=7d'
-///////// get exchange rates for coins  ////////
+/////// get exchange rates for coins  ////////
 
 $.ajax({ 
     url: exQuery,
@@ -26,9 +34,20 @@ $.ajax({
     var len = result.data.coins.length;
     console.log(result)
     for(let i =0; i < len; i++){
-        console.log(result.data.coins[i].id);
-        console.log(result.data.coins[i].name);
-        console.log(result.data.coins[i].symbol);
+        // console.log(result.data.coins[i].id);
+        // console.log(result.data.coins[i].name);
+        // console.log(result.data.coins[i].symbol);
+
+      var coindID = result.data.coins[i].id;
+      var coinName = result.data.coins[i].name;
+      var coinSymbol = result.data.coins[i].symbol;
+
+      var newOption = $('<option>').text(coinName+' '+coinSymbol);
+      $('#crypto-opt').append(newOption);
+
+
+
+
     }
 
     
@@ -36,13 +55,13 @@ $.ajax({
 
 ///////get cryptocoin price history by 7day periods//////
 
-$.ajax({ 
-    url: historyQuery,
-    method: "GET"
-}).then(function (response) {
-    var result =response;
-    console.log(response);
-});
+// $.ajax({ 
+//     url: historyQuery,
+//     method: "GET"
+// }).then(function (response) {
+//     var result =response;
+//     console.log(response);
+// });
     
     
 
