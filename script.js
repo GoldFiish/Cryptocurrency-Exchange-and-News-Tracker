@@ -120,8 +120,11 @@ $("button").on("click", function (event) {
 
 
   exchangeCurrency = exchangeCurrency.slice(0, 3);
+  exchangeCurrency = exchangeCurrency.trim();
+ 
   cryptoCurrency = cryptoCurrency.slice(0, 3);
-
+  cryptoCurrency=cryptoCurrency.trim();
+  
   exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
 
 
