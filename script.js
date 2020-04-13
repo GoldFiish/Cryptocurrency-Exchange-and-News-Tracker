@@ -1,3 +1,9 @@
+// hamburger function
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+
+
 ///////create ajaxcalls to retrieve info ////////
 
 var apiKey = null;
@@ -37,15 +43,6 @@ $.ajax({
   url: cryptoQuery,
   method: "GET"
 }).then(function (response) {
-    var result =response;
-    var len = result.data.coins.length;
-    console.log(result)
-    for(let i =0; i < len; i++){
-        console.log(result.data.coins[i].id);
-        console.log(result.data.coins[i].name);
-        console.log(result.data.coins[i].symbol);
-    }
-    
   var result = response;
   var len = result.data.coins.length;
   localStorage.setItem('cryptoInfo', JSON.stringify(result))
@@ -120,8 +117,27 @@ $('.cryptocurrency').on('click', function () {
 })
 
 
+// $.ajax({ 
+//     url: historyQuery,
+//     method: "GET"
+// }).then(function (response) {
+//     var result =response;
+// });
+
+
+////////on click to set crypto-currency equal to zero if international currency is being entered //////
+$('.currency').on('click', function () {
+  $('.cryptocurrency').val('0');
+})
+
+////////on click to set international-currency equal to zero if crypto-currency  is being entered //////
+$('.cryptocurrency').on('click', function () {
+  $('.currency').val('0');
+})
+
+
 // On-click functiion to get and display news articles
-$("button").on("click", function (event) {
+$(".btn").on("click", function (event) {
   event.preventDefault();
 
   var cryptoCurrency = $("#crypto-opt").val();
@@ -151,7 +167,7 @@ $("button").on("click", function (event) {
     
       var image = response.articles[i].urlToImage;
       $("#image" + i).html("<img src = '" + image + "' width='600' alt='image that accompanies the article.'>");
-
+      
     }
   });
 
