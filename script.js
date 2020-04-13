@@ -21,14 +21,15 @@ var cryptoCurrencyArr = [];
 var exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency;
 var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
+
 /////// get exchange rates for coins  ////////
 
-// $.ajax({
-//   url: exQuery,
-//   method: "GET"
-// }).then(function (response) {
+$.ajax({
+  url: exQuery,
+  method: "GET"
+}).then(function (response) {
 
-// });
+});
 
 
 
@@ -61,12 +62,12 @@ $.ajax({
 
 ///////get cryptocoin price history by 7day periods//////
 
-// $.ajax({ 
-//     url: historyQuery,
-//     method: "GET"
-// }).then(function (response) {
-//     var result =response;
-// });
+$.ajax({ 
+    url: historyQuery,
+    method: "GET"
+}).then(function (response) {
+    var result =response;
+});
 
 
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
