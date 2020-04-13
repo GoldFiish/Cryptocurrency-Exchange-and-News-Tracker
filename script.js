@@ -9,7 +9,7 @@ $(document).ready(function(){
 var apiKey = null;
 var cryptCoin = null;
 var exchangeCurrency = 'PHP';
-var coinID = null;
+var coinID = '1';
 var coinName = null;
 var coinSymbol = null;
 var coinPrice = null;
