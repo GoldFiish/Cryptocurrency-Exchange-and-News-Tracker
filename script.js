@@ -21,8 +21,6 @@ var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?ba
 //   url: exQuery,
 //   method: "GET"
 // }).then(function (response) {
-//   console.log(response);
-
 
 // });
 
@@ -42,7 +40,6 @@ $.ajax({
   var result = response;
   var len = result.data.coins.length;
   localStorage.setItem('cryptoInfo', JSON.stringify(result))
-  console.log(result)
   for (let i = 0; i < len; i++) {
 
     var coinID = result.data.coins[i].id;
@@ -63,7 +60,6 @@ $.ajax({
 //     method: "GET"
 // }).then(function (response) {
 //     var result =response;
-//     console.log(response);
 // });
 
 
@@ -125,8 +121,6 @@ $("button").on("click", function (event) {
 
   exchangeCurrency = exchangeCurrency.slice(0, 3);
   cryptoCurrency = cryptoCurrency.slice(0, 3);
-  console.log(cryptoCurrency);
-  console.log(exchangeCurrency);
 
   exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
 
@@ -135,7 +129,6 @@ $("button").on("click", function (event) {
     url: exQuery,
     method: "GET"
   }).then(function (response) {
-    // console.log(response);
 
     var currencyRate = parseFloat(response.rates[exchangeCurrency]).toFixed(3);
     localStorage.setItem('currencyRate', JSON.stringify(currencyRate));
@@ -144,25 +137,21 @@ $("button").on("click", function (event) {
     for (let i = 0; i < result.data.coins.length; i++) {
       if (result.data.coins[i].symbol === cryptoCurrency) {
         cryptoRate = result.data.coins[i].price;
-        console.log(cryptoRate);
-        localStorage.setItem('cryptoRate', cryptoRate)
-        break
+        localStorage.setItem('cryptoRate', cryptoRate);
+        break;
       }
 
     }
 
     if (cryptoCurrencyAmt === 0) {
       cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
-      console.log(cryptoCurrencyAmt);
       $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
 
     } else if (currencyAmt === 0) {
       currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
-      console.log(currencyAmt);
-      console.log(typeof currencyAmt)
       $('.currency').val(parseFloat(currencyAmt).toFixed(3));
     }else{
-      alert('Please Enter Amount of Currency or Cryptocurrency')
+      alert('Please Enter Amount of Currency or Cryptocurrency');
 
     }
 
