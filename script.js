@@ -88,7 +88,7 @@ $("button").on("click", function (event) {
     method: "GET"
   }).then(function (response) {
 
-    // Loop through the array and display three articles
+    // Loop through the array and display three articles and images
     for (var i = 0; i < response.articles.length; i++) {
 
       var title = response.articles[i].title;
@@ -97,14 +97,15 @@ $("button").on("click", function (event) {
       var author = response.articles[i].author;
       $("#author" + i).text(author);
 
-      var source = response.articles[i].source.name;
-      $("#source" + i).text(source);
-
-      var pubDate = response.articles[i].publishedAt;
-      $("#pubDate" + i).text(pubDate);
-
       var article = response.articles[i].content;
       $("#article" + i).text(article);
+
+      var url = response.articles[i].url;
+      $("#url" + i).html("<a href='" + url + "' target='_blank'><em>Read more...</em></a>");
+    
+      var image = response.articles[i].urlToImage;
+      $("#image" + i).html("<img src = '" + image + "' width='600' alt='image that accompanies the article.'>");
+
     }
   });
 
