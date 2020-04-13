@@ -1,41 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@700&family=Fjalla+One&display=swap');
 
 /* body */
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Fjalla One', sans-serif;
 }
 
 /* navigation */
 .nav-wrapper {
-    background-color: #F89B07;
+    background-color: #FFAA01;
+    margin-bottom: 15px;
 }
 
 .brand-logo {
     margin-right: 25px;
+    text-shadow: 2px 2px 2px #FFAA01;
+    letter-spacing: 2px;
 }
 
 .left {
     margin-left: 15px;
     font-weight: bold;
+    text-shadow: 1px 1px #FFAA01;
+    letter-spacing: 2px;
 }
 
 /* banner */
 .header-container {
-    background: transparent url('https://miro.medium.com/max/2560/1*2cdqBbOJUdvqGVKxAi1JtA.png') 0 0 no-repeat scroll;
+    background: transparent url('https://miro.medium.com/max/2560/1*2cdqBbOJUdvqGVKxAi1JtA.png') no-repeat scroll;
+    background-position: center center;
     background-size: cover;
-    height: 350px;
+    height: 400px;
     width: 100%;
     margin-bottom: 3em;
     /* display: table; */
 }
+/* button */
 
 /* input */
+.btn {
+    margin-left: 350px;
+}
 
 /* articles */
-
 .article {
+    background: transparent url('https://www.newsbtc.com/wp-content/uploads/2019/09/shutterstock_739595833-e1567881600903.jpg') no-repeat scroll;
+    background-position: center center;
+    background-size: cover;
+    height: 380px;
+    width: 100%;
+    display: table;
     padding: 0 15px;
-  }
+    letter-spacing: 2px;
+}
 
   /* chart */
   
