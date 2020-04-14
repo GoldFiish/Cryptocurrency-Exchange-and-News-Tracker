@@ -60,58 +60,6 @@ $.ajax({
 });
 
 
-<<<<<<< HEAD
-///////get cryptocoin price history by 7day periods and graph it//////
-
-$.ajax({ 
-    url: historyQuery,
-    method: "GET"
-}).then(function (response) {
-    
-    // Google charts code
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-  
-    function drawChart() {
-
-      // Get historical coin data and create an array of arrays
-      var histData = response.data.coin.history;
-      var arrayOfArrays= [['Month', 'U.S. Dollars']];
-
-      // Create arrays each with two elements and push them into arrayOfArrays
-      for (var i = 0; i < histData.length; i++) {
-        arrayOfArrays.push([JSON.stringify(i), parseInt(histData[i])]);
-      }
-      
-      // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
-      var data = google.visualization.arrayToDataTable(arrayOfArrays);
-      
-      var options = {
-        title: 'Currency Performance',
-        curveType: 'none',
-        legend: { position: 'bottom' }
-      };
-  
-      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-      
-      chart.draw(data, options);
-    }
-      // Makes chart responsive
-      $(window).resize(function(){
-        drawChart();
-      });
-});
-    
-     
-// $.ajax({ 
-//     url: historyQuery,
-//     method: "GET"
-// }).then(function (response) {
-//     var result =response;
-// });
-
-=======
->>>>>>> c1329093c3d8003a2f047d3be0c4f4d2738dafd9
 
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
 $('.currency').on('click', function () {
@@ -165,13 +113,8 @@ $(".btn").on("click", function (event) {
       $("#url" + i).html("<a href='" + url + "' target='_blank'><em>Read more...</em></a>");
 
       var image = response.articles[i].urlToImage;
-<<<<<<< HEAD
       $("#image" + i).html("<img src = '" + image + "' width='100%' alt='Sorry no image available at this time.'>");
       
-=======
-      $("#image" + i).html("<img src = '" + image + "' width='600' alt='image that accompanies the article.'>");
-
->>>>>>> c1329093c3d8003a2f047d3be0c4f4d2738dafd9
     }
   });
 
@@ -249,7 +192,7 @@ $(".btn").on("click", function (event) {
         console.log(currencyRate)
         // Create arrays each with two elements and push them into arrayOfArrays
         for (var i = 0; i < histData.length; i++) {
-          arrayOfArrays.push([JSON.stringify(i), currencyRate * parseInt(histData[i])]);
+          arrayOfArrays.push([JSON.stringify(i), currencyRate * parseFloat(histData[i]).toFixed(3)]);
         }
         console.log(arrayOfArrays)
         // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
