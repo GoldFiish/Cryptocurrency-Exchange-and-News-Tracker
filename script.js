@@ -9,7 +9,7 @@ $(document).ready(function(){
 var apiKey = null;
 var cryptCoin = null;
 var exchangeCurrency = 'PHP';
-var coinID = null;
+var coinID = '1';
 var coinName = null;
 var coinSymbol = null;
 var coinPrice = null;
@@ -60,7 +60,63 @@ $.ajax({
 
 });
 
-///////get cryptocoin price history by 7day periods//////
+
+///////get cryptocoin price history by 7day periods and graph it//////
+
+$.ajax({ 
+    url: historyQuery,
+    method: "GET"
+}).then(function (response) {
+    
+    // Google charts code
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+  
+    function drawChart() {
+
+      // Get historical coin data and create an array of arrays
+      var histData = response.data.coin.history;
+      var arrayOfArrays= [['Month', 'U.S. Dollars']];
+
+      // Create arrays each with two elements and push them into arrayOfArrays
+      for (var i = 0; i < histData.length; i++) {
+        arrayOfArrays.push([JSON.stringify(i), parseInt(histData[i])]);
+      }
+      
+      // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
+      var data = google.visualization.arrayToDataTable(arrayOfArrays);
+      
+      var options = {
+        title: 'Currency Performance',
+        curveType: 'none',
+        legend: { position: 'bottom' }
+      };
+  
+      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      
+      chart.draw(data, options);
+    }
+});
+    
+     
+// $.ajax({ 
+//     url: historyQuery,
+//     method: "GET"
+// }).then(function (response) {
+//     var result =response;
+// });
+
+
+////////on click to set crypto-currency equal to zero if international currency is being entered //////
+$('.currency').on('click', function () {
+  $('.cryptocurrency').val('0');
+})
+
+////////on click to set international-currency equal to zero if crypto-currency  is being entered //////
+$('.cryptocurrency').on('click', function () {
+  $('.currency').val('0');
+})
+
 
 $.ajax({ 
     url: historyQuery,
@@ -82,7 +138,7 @@ $('.cryptocurrency').on('click', function () {
 
 
 // On-click functiion to get and display news articles
-$("button").on("click", function (event) {
+$(".btn").on("click", function (event) {
   event.preventDefault();
 
   var cryptoCurrency = $("#crypto-opt").val();
@@ -112,7 +168,7 @@ $("button").on("click", function (event) {
     
       var image = response.articles[i].urlToImage;
       $("#image" + i).html("<img src = '" + image + "' width='600' alt='image that accompanies the article.'>");
-
+      
     }
   });
 
