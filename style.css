@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@700&family=Fjalla+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 /* body */
 body {
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* navigation */
 .nav-wrapper {
     background-color: #FFAA01;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .brand-logo {
@@ -31,32 +30,55 @@ body {
     background-size: cover;
     height: 400px;
     width: 100%;
-    margin-bottom: 3em;
-    /* display: table; */
+    margin-bottom: 30px;
 }
-/* button */
+/* exchange rate container */
 
-/* input */
+.input-container {
+    padding-top: 85px;
+}
+
+/* button */
 .btn {
-    margin-left: 350px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* articles */
 .article {
-    background: transparent url('https://www.newsbtc.com/wp-content/uploads/2019/09/shutterstock_739595833-e1567881600903.jpg') no-repeat scroll;
+    background: transparent url('https://doc.casthighlight.com/wp-content/uploads/2019/09/network-nodes-connected-background-footage-089996011_prevstill.jpeg') no-repeat scroll;
     background-position: center center;
     background-size: cover;
-    height: 380px;
+    height: 450px;
     width: 100%;
     display: table;
     padding: 0 15px;
     letter-spacing: 2px;
+    margin-bottom: 50px;
+    transition: ease-out .8s;
 }
 
-  /* chart */
-  
+.article:hover {
+    border-radius: 50%;
+    transition: ease-in .8s;
+}
+
+
 /* footer */
 
 .page-footer {
     background-color: #FFAA01;
+    padding-bottom: 50px;
 }
+
+#input, label {
+    color: white;
+}
+
+.social-media a {
+    color: white;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+
