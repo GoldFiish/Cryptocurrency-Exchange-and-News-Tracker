@@ -199,7 +199,7 @@ $(".btn").on("click", function (event) {
         var data = google.visualization.arrayToDataTable(arrayOfArrays);
 
         var options = {
-          title: 'Currency Performance',
+          title: 'Currency Performance By Week',
           curveType: 'none',
           legend: { position: 'bottom' }
         };
