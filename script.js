@@ -159,60 +159,60 @@ $(".btn").on("click", function (event) {
 
     }
 
-    if (cryptoCurrencyAmt === 0) {
-      cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
-      $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
+    if (cryptoCurrencyAmt === 0 && currencyAmt !== 0) {
+    cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
+    $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
 
-    } else if (currencyAmt === 0) {
-      currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
-      $('.currency').val(parseFloat(currencyAmt).toFixed(3));
-    } else {
-      alert('Please Enter Amount of Currency or Cryptocurrency');
+  } else if (currencyAmt === 0 && cryptoCurrencyAmt !== 0) {
+    currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
+    $('.currency').val(parseFloat(currencyAmt).toFixed(3));
+  } else {
+  
 
-    }
+  }
 
-    coinID = localStorage.getItem('coinID'); ///////////getting coinID from localStorage
-    historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
-    $.ajax({
-      url: historyQuery,
-      method: "GET"
-    }).then(function (response) {
-      console.log(response)
-      // Google charts code
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawChart);
+  coinID = localStorage.getItem('coinID'); ///////////getting coinID from localStorage
+  historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
+  $.ajax({
+    url: historyQuery,
+    method: "GET"
+  }).then(function (response) {
+    console.log(response)
+    // Google charts code
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+    function drawChart() {
 
-        // Get historical coin data and create an array of arrays
-        var histData = response.data.coin.history;
-        console.log(histData)
-        var arrayOfArrays = [['Month', 'U.S. Dollars']];
-        arrayOfArrays[0][1] = localStorage.getItem('currencyName');
+      // Get historical coin data and create an array of arrays
+      var histData = response.data.coin.history;
 
-        console.log(currencyRate)
-        // Create arrays each with two elements and push them into arrayOfArrays
-        for (var i = 0; i < histData.length; i++) {
-          arrayOfArrays.push([JSON.stringify(i), currencyRate * parseFloat(histData[i]).toFixed(3)]);
-        }
-        console.log(arrayOfArrays)
-        // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
-        var data = google.visualization.arrayToDataTable(arrayOfArrays);
+      var arrayOfArrays = [['Month', 'U.S. Dollars']];
+      arrayOfArrays[0][1] = localStorage.getItem('currencyName');
 
-        var options = {
-          title: 'Currency Performance By Week',
-          curveType: 'none',
-          legend: { position: 'bottom' }
-        };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
+      // Create arrays each with two elements and push them into arrayOfArrays
+      for (var i = 0; i < histData.length; i++) {
+        arrayOfArrays.push([JSON.stringify(i), currencyRate * parseFloat(histData[i]).toFixed(3)]);
       }
-      $(window).resize(function () {
-        drawChart();
-      });
+
+      // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
+      var data = google.visualization.arrayToDataTable(arrayOfArrays);
+
+      var options = {
+        title: 'Currency Performance By Week',
+        curveType: 'none',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+      chart.draw(data, options);
+    }
+    $(window).resize(function () {
+      drawChart();
     });
+  });
 
 
 
@@ -235,7 +235,7 @@ $(".btn").on("click", function (event) {
 
 
 
-  })
+})
 
 
 
