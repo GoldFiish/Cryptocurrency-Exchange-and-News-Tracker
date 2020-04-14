@@ -62,41 +62,7 @@ $.ajax({
 
 ///////get cryptocoin price history by 7day periods and graph it//////
 
-// $.ajax({ 
-//     url: historyQuery,
-//     method: "GET"
-// }).then(function (response) {
 
-//     // Google charts code
-//     google.charts.load('current', {'packages':['corechart']});
-//     google.charts.setOnLoadCallback(drawChart);
-
-//     function drawChart() {
-
-//       // Get historical coin data and create an array of arrays
-//       var histData = response.data.coin.history;
-//       console.log(histData)
-//       var arrayOfArrays= [['Month', 'U.S. Dollars']];
-
-//       // Create arrays each with two elements and push them into arrayOfArrays
-//       for (var i = 0; i < histData.length; i++) {
-//         arrayOfArrays.push([JSON.stringify(i), parseInt(histData[i])]);
-//       }
-
-//       // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
-//       var data = google.visualization.arrayToDataTable(arrayOfArrays);
-
-//       var options = {
-//         title: 'Currency Performance',
-//         curveType: 'none',
-//         legend: { position: 'bottom' }
-//       };
-
-//       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-//       chart.draw(data, options);
-//     }
-// });
 
 
 // $.ajax({ 
@@ -116,14 +82,6 @@ $('.currency').on('click', function () {
 $('.cryptocurrency').on('click', function () {
   $('.currency').val('0');
 })
-
-
-// $.ajax({ 
-//     url: historyQuery,
-//     method: "GET"
-// }).then(function (response) {
-//     var result =response;
-// });
 
 
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
@@ -176,6 +134,7 @@ $(".btn").on("click", function (event) {
 
 
   exchangeCurrency = $('#currency-opt').val();
+  localStorage.setItem('currencyName', exchangeCurrency);
   var currencyAmt = $('.currency').val();
   currencyAmt = parseInt(currencyAmt);
   var cryptoCurrencyAmt = $('.cryptocurrency').val();
@@ -241,10 +200,12 @@ $(".btn").on("click", function (event) {
         var histData = response.data.coin.history;
         console.log(histData)
         var arrayOfArrays = [['Month', 'U.S. Dollars']];
+        arrayOfArrays[0][1]=localStorage.getItem('currencyName');
 
+        console.log(currencyRate)
         // Create arrays each with two elements and push them into arrayOfArrays
         for (var i = 0; i < histData.length; i++) {
-          arrayOfArrays.push([JSON.stringify(i), parseInt(histData[i])]);
+          arrayOfArrays.push([JSON.stringify(i), currencyRate * parseInt(histData[i])]);
         }
 
         // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
