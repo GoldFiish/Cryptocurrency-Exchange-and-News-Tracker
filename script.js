@@ -115,7 +115,7 @@ $(".btn").on("click", function (event) {
 
       var image = response.articles[i].urlToImage;
       $("#image" + i).html("<img src = '" + image + "' width='100%' alt='Sorry no image available at this time.'>");
-      
+
     }
   });
 
@@ -208,6 +208,11 @@ $(".btn").on("click", function (event) {
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
         chart.draw(data, options);
+
+        $(window).resize(function () {
+          drawChart();
+
+        })
       }
     });
 
