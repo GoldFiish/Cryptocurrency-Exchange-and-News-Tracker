@@ -61,6 +61,7 @@ body {
 .article:hover {
     border-radius: 50%;
     transition: ease-in .8s;
+    overflow: hidden;
 }
 
 
