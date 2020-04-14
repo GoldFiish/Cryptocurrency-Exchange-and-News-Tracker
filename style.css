@@ -7,7 +7,7 @@ body {
 /* navigation */
 .nav-wrapper {
     background-color: #FFAA01;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .brand-logo {
@@ -30,7 +30,7 @@ body {
     background-size: cover;
     height: 400px;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 /* exchange rate container */
 
@@ -49,7 +49,7 @@ body {
     background: transparent url('https://doc.casthighlight.com/wp-content/uploads/2019/09/network-nodes-connected-background-footage-089996011_prevstill.jpeg') no-repeat scroll;
     background-position: center center;
     background-size: cover;
-    height: 380px;
+    height: 450px;
     width: 100%;
     display: table;
     padding: 0 15px;
