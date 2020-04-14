@@ -9,7 +9,7 @@ $(document).ready(function(){
 var apiKey = null;
 var cryptCoin = null;
 var exchangeCurrency = 'PHP';
-var coinID = null;
+var coinID = '1';
 var coinName = null;
 var coinSymbol = null;
 var coinPrice = null;
@@ -95,6 +95,10 @@ $.ajax({
       
       chart.draw(data, options);
     }
+      // Makes chart responsive
+      $(window).resize(function(){
+        drawChart();
+      });
 });
     
      
@@ -166,7 +170,7 @@ $(".btn").on("click", function (event) {
       $("#url" + i).html("<a href='" + url + "' target='_blank'><em>Read more...</em></a>");
     
       var image = response.articles[i].urlToImage;
-      $("#image" + i).html("<img src = '" + image + "' width='600' alt='image that accompanies the article.'>");
+      $("#image" + i).html("<img src = '" + image + "' width='100%' alt='Sorry no image available at this time.'>");
       
     }
   });
