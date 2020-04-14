@@ -129,12 +129,9 @@ $(".btn").on("click", function (event) {
   cryptoCurrencyAmt = parseInt(cryptoCurrencyAmt);
   var cryptoCurrency = $('#crypto-opt').val();
 
-
   exchangeCurrency = exchangeCurrency.slice(0, 3);
   exchangeCurrency = exchangeCurrency.trim();
 
-  console.log(cryptoCurrency.indexOf(' '))
-  
   cryptoCurrency = cryptoCurrency.slice(0, cryptoCurrency.indexOf(' '));
   cryptoCurrency = cryptoCurrency.trim();
 
@@ -190,7 +187,7 @@ $(".btn").on("click", function (event) {
         var histData = response.data.coin.history;
         console.log(histData)
         var arrayOfArrays = [['Month', 'U.S. Dollars']];
-        arrayOfArrays[0][1]=localStorage.getItem('currencyName');
+        arrayOfArrays[0][1] = localStorage.getItem('currencyName');
 
         console.log(currencyRate)
         // Create arrays each with two elements and push them into arrayOfArrays
