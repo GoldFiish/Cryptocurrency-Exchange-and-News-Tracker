@@ -60,18 +60,6 @@ $.ajax({
 });
 
 
-///////get cryptocoin price history by 7day periods and graph it//////
-
-
-
-
-// $.ajax({ 
-//     url: historyQuery,
-//     method: "GET"
-// }).then(function (response) {
-//     var result =response;
-// });
-
 
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
 $('.currency').on('click', function () {
@@ -145,7 +133,9 @@ $(".btn").on("click", function (event) {
   exchangeCurrency = exchangeCurrency.slice(0, 3);
   exchangeCurrency = exchangeCurrency.trim();
 
-  cryptoCurrency = cryptoCurrency.slice(0, 3);
+  console.log(cryptoCurrency.indexOf(' '))
+  
+  cryptoCurrency = cryptoCurrency.slice(0, cryptoCurrency.indexOf(' '));
   cryptoCurrency = cryptoCurrency.trim();
 
   exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency
@@ -207,7 +197,7 @@ $(".btn").on("click", function (event) {
         for (var i = 0; i < histData.length; i++) {
           arrayOfArrays.push([JSON.stringify(i), currencyRate * parseInt(histData[i])]);
         }
-
+        console.log(arrayOfArrays)
         // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
         var data = google.visualization.arrayToDataTable(arrayOfArrays);
 
