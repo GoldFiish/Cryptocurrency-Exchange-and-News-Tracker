@@ -9,7 +9,7 @@ $(document).ready(function () {
 var apiKey = null;
 var cryptCoin = null;
 var exchangeCurrency = 'PHP';
-var coinID = '1';
+var coinID = null;
 var coinName = null;
 var coinSymbol = null;
 var coinPrice = null;
@@ -115,7 +115,7 @@ $(".btn").on("click", function (event) {
 
       var image = response.articles[i].urlToImage;
       $("#image" + i).html("<img src = '" + image + "' width='100%' alt='Sorry no image available at this time.'>");
-      
+
     }
   });
 
@@ -209,6 +209,9 @@ $(".btn").on("click", function (event) {
 
         chart.draw(data, options);
       }
+      $(window).resize(function () {
+        drawChart();
+      });
     });
 
 
