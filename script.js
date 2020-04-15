@@ -200,6 +200,10 @@ $(".btn").on("click", function (event) {
       var data = google.visualization.arrayToDataTable(arrayOfArrays);
 
       var options = {
+        fontName:'OpenSans',
+        vAxis:{
+          title: 'Currency'
+        },
         title: 'Currency Performance By Week',
         curveType: 'none',
         legend: { position: 'bottom' }
