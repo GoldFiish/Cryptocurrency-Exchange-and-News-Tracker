@@ -25,20 +25,25 @@ var modal = $('<div>').text('Please Enter a Cryptocurrency/International Currenc
 var modalButton = $('<a>').text('Understood');
 modalButton.addClass('waves-effect btn waves-teal');
 modalButton.attr('id', 'mButton')
+modal.addClass('row')
 modal.append(modalButton);
+modalButton.css({
+  'position':'absolute',
+  'bottom':'1vh',
 
+})
 modal.css({
   'height': '35vh',
   'width': '54vw',
   'color': 'white',
   'font-weight': 'bolder',
-  'background-color': 'slateGrey',
+  'background-color': 'rgb(255, 167, 25)',
   'border-radius': '8px',
   'border-style': 'solid',
   'border-color': 'black',
   'border-width': '2px',
   'margin-left': '23vw',
-  'font-size': '3vh',
+  'font-size': '2vw',
   'text-align': 'center',
   'position': 'fixed',
   'z-index': '1',
@@ -101,14 +106,15 @@ $('.cryptocurrency').on('click', function () {
   $('.currency').val('0');
 })
 
+$('#mButton').on('click',function(){
+  $('.currency').val('0');
+  $('.cryptocurrency').val('0');
+  modal.hide();
+})
+
 
 // On-click functiion to get and display news articles
-$(".btn").on("click", function (event) {
-
-  // if (currencyAmt === 0 && cryptoCurrencyAmt === 0) {
-  //   modal.show();
-  //   return
-  // }
+$("#exchange_button").on("click", function (event) {
   event.preventDefault();
 
 
