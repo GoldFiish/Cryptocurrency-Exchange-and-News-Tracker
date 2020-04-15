@@ -21,15 +21,41 @@ var cryptoCurrencyArr = [];
 var exQuery = 'https://api.exchangeratesapi.io/latest?base=USD&symbols=USD,' + exchangeCurrency;
 var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
+var modal = $('<div>').text('Please Enter a Cryptocurrency/International Currency Amount');
+var modalButton = $('<a>').text('Understood');
+modalButton.addClass('waves-effect btn waves-teal');
+modalButton.attr('id', 'mButton')
+modal.append(modalButton);
 
+modal.css({
+  'height': '35vh',
+  'width': '54vw',
+  'color': 'white',
+  'font-weight': 'bolder',
+  'background-color': 'slateGrey',
+  'border-radius': '8px',
+  'border-style': 'solid',
+  'border-color': 'black',
+  'border-width': '2px',
+  'margin-left': '23vw',
+  'font-size': '3vh',
+  'text-align': 'center',
+  'position': 'fixed',
+  'z-index': '1',
+  'top': '25vh'
+});
+modal.hide();
+
+
+$('#curve_chart').append(modal);
 /////// get exchange rates for coins  ////////
 
-$.ajax({
-  url: exQuery,
-  method: "GET"
-}).then(function (response) {
+// $.ajax({
+//   url: exQuery,
+//   method: "GET"
+// }).then(function (response) {
 
-});
+// });
 
 
 
@@ -39,6 +65,7 @@ for (let i = 0; i < currencyArr.length; i++) {
   $('#currency-opt').append(newCurrency);
 
 }
+
 ///////get cryptocoin pricing base USD  ///////////
 $.ajax({
   url: cryptoQuery,
@@ -62,15 +89,6 @@ $.ajax({
 
 
 
-////////on click to set crypto-currency equal to zero if international currency is being entered //////
-$('.currency').on('click', function () {
-  $('.cryptocurrency').val('0');
-})
-
-////////on click to set international-currency equal to zero if crypto-currency  is being entered //////
-$('.cryptocurrency').on('click', function () {
-  $('.currency').val('0');
-})
 
 
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
@@ -86,7 +104,14 @@ $('.cryptocurrency').on('click', function () {
 
 // On-click functiion to get and display news articles
 $(".btn").on("click", function (event) {
+
+  // if (currencyAmt === 0 && cryptoCurrencyAmt === 0) {
+  //   modal.show();
+  //   return
+  // }
   event.preventDefault();
+
+
 
   var cryptoCurrency = $("#crypto-opt").val();
   var apiKey = "33a2934dfaa04b2b817eb3096ee6754e"
@@ -160,63 +185,64 @@ $(".btn").on("click", function (event) {
     }
 
     if (cryptoCurrencyAmt === 0 && currencyAmt !== 0) {
-    cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
-    $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
+      cryptoCurrencyAmt = (currencyAmt / currencyRate / cryptoRate);
+      $('.cryptocurrency').val(parseFloat(cryptoCurrencyAmt).toFixed(3));
 
-  } else if (currencyAmt === 0 && cryptoCurrencyAmt !== 0) {
-    currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
-    $('.currency').val(parseFloat(currencyAmt).toFixed(3));
-  } else {
-  
+    } else if (currencyAmt === 0 && cryptoCurrencyAmt !== 0) {
+      currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
+      $('.currency').val(parseFloat(currencyAmt).toFixed(3));
+    } else if (currencyAmt === 0 && cryptoCurrencyAmt === 0) {
+      modal.show();
+      return
 
-  }
-
-  coinID = localStorage.getItem('coinID'); ///////////getting coinID from localStorage
-  historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
-  $.ajax({
-    url: historyQuery,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response)
-    // Google charts code
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
-      // Get historical coin data and create an array of arrays
-      var histData = response.data.coin.history;
-
-      var arrayOfArrays = [['Month', 'U.S. Dollars']];
-      arrayOfArrays[0][1] = localStorage.getItem('currencyName');
-
-
-      // Create arrays each with two elements and push them into arrayOfArrays
-      for (var i = 0; i < histData.length; i++) {
-        arrayOfArrays.push([JSON.stringify(i), currencyRate * parseFloat(histData[i]).toFixed(3)]);
-      }
-
-      // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
-      var data = google.visualization.arrayToDataTable(arrayOfArrays);
-
-      var options = {
-        fontName:'OpenSans',
-        vAxis:{
-          title: 'Currency'
-        },
-        title: 'Currency Performance By Week',
-        curveType: 'none',
-        legend: { position: 'bottom' }
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-      chart.draw(data, options);
     }
-    $(window).resize(function () {
-      drawChart();
+
+    coinID = localStorage.getItem('coinID'); ///////////getting coinID from localStorage
+    historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
+    $.ajax({
+      url: historyQuery,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response)
+      // Google charts code
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        // Get historical coin data and create an array of arrays
+        var histData = response.data.coin.history;
+
+        var arrayOfArrays = [['Month', 'U.S. Dollars']];
+        arrayOfArrays[0][1] = localStorage.getItem('currencyName');
+
+
+        // Create arrays each with two elements and push them into arrayOfArrays
+        for (var i = 0; i < histData.length; i++) {
+          arrayOfArrays.push([JSON.stringify(i), currencyRate * parseFloat(histData[i]).toFixed(3)]);
+        }
+
+        // Google charts code. This contains the data to be graphed, namely the arrayOfArrays
+        var data = google.visualization.arrayToDataTable(arrayOfArrays);
+
+        var options = {
+          fontName: 'OpenSans',
+          vAxis: {
+            title: 'Currency'
+          },
+          title: 'Currency Performance By Week',
+          curveType: 'none',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+      $(window).resize(function () {
+        drawChart();
+      });
     });
-  });
 
 
 
@@ -239,7 +265,7 @@ $(".btn").on("click", function (event) {
 
 
 
-})
+  })
 
 
 
