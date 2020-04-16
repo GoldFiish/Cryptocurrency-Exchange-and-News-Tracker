@@ -24,14 +24,8 @@ var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?ba
 var modal = $('<div>').text('Please Enter a Cryptocurrency/International Currency Amount');
 var modalButton = $('<a>').text('Understood');
 modalButton.addClass('waves-effect btn waves-teal');
-modalButton.attr('id', 'mButton')
+modalButton.attr('id', 'mButton');
 modal.addClass('row')
-modal.append(modalButton);
-modalButton.css({
-  'position':'absolute',
-  'bottom':'1vh',
-
-})
 modal.css({
   'height': '35vh',
   'width': '54vw',
@@ -49,10 +43,16 @@ modal.css({
   'z-index': '1',
   'top': '25vh'
 });
+modal.append(modalButton);
+modalButton.css({
+  'display': 'flex',
+  'justify-content': 'center',
+  'font-size': '2rm'
+
+})
+$('.input-container').append(modal);
 modal.hide();
 
-
-$('#curve_chart').append(modal);
 /////// get exchange rates for coins  ////////
 
 // $.ajax({
@@ -99,23 +99,38 @@ $.ajax({
 ////////on click to set crypto-currency equal to zero if international currency is being entered //////
 $('.currency').on('click', function () {
   $('.cryptocurrency').val('0');
+  $('.currency').val('0');
 })
 
 ////////on click to set international-currency equal to zero if crypto-currency  is being entered //////
 $('.cryptocurrency').on('click', function () {
   $('.currency').val('0');
+  $('.cryptocurrency').val('0');
 })
 
-$('#mButton').on('click',function(){
-  $('.currency').val('0');
-  $('.cryptocurrency').val('0');
-  modal.hide();
+$('#mButton').on('click', function () {
+   modal.css({
+     'display':'none'
+   })
+  
 })
 
 
 // On-click functiion to get and display news articles
 $("#exchange_button").on("click", function (event) {
-  event.preventDefault();
+  // event.preventDefault();
+  console.log($('.currency').val())
+  console.log( $('.cryptocurrency').val())
+
+  if ($('.currency').val() === '0' && $('.cryptocurrency').val() === '0') {
+    console.log('hey now')
+    modal.css({
+      'display':'block'
+    });
+    
+    return
+
+  }
 
 
 
@@ -197,9 +212,7 @@ $("#exchange_button").on("click", function (event) {
     } else if (currencyAmt === 0 && cryptoCurrencyAmt !== 0) {
       currencyAmt = cryptoCurrencyAmt * cryptoRate * currencyRate;
       $('.currency').val(parseFloat(currencyAmt).toFixed(3));
-    } else if (currencyAmt === 0 && cryptoCurrencyAmt === 0) {
-      modal.show();
-      return
+    } else {
 
     }
 
@@ -248,48 +261,14 @@ $("#exchange_button").on("click", function (event) {
       $(window).resize(function () {
         drawChart();
       });
+
+
+
     });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
