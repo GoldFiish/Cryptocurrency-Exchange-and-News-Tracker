@@ -163,8 +163,6 @@ $("#exchange_button").on("click", function (event) {
   });
 
 
-
-
   exchangeCurrency = $('#currency-opt').val();
   localStorage.setItem('currencyName', exchangeCurrency);
   var currencyAmt = $('.currency').val();
