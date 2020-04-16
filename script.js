@@ -23,7 +23,7 @@ var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
 var modal = $('<div>').text('Please Enter a Cryptocurrency/International Currency Amount');
 var modalButton = $('<a>').text('Understood');
-modalButton.addClass('waves-effect btn waves-teal');
+modalButton.addClass('waves-effect waves-light btn');
 modalButton.attr('id', 'mButton');
 modal.addClass('row')
 modal.css({
@@ -37,7 +37,7 @@ modal.css({
   'border-color': 'black',
   'border-width': '2px',
   'margin-left': '23vw',
-  'font-size': '2vw',
+  'font-size': '3rm',
   'text-align': 'center',
   'position': 'fixed',
   'z-index': '1',
@@ -47,7 +47,9 @@ modal.append(modalButton);
 modalButton.css({
   'display': 'flex',
   'justify-content': 'center',
-  'font-size': '2rm'
+  'font-size': '3rm',
+  'color':'white',
+  'font-weight':'bolder'
 
 })
 $('.input-container').append(modal);
@@ -109,27 +111,29 @@ $('.cryptocurrency').on('click', function () {
 })
 
 $('#mButton').on('click', function () {
-   modal.css({
-     'display':'none'
-   })
-  
+  modal.css({
+    'display': 'none'
+  })
+
 })
 
 
 // On-click functiion to get and display news articles
 $("#exchange_button").on("click", function (event) {
   // event.preventDefault();
-  console.log($('.currency').val())
-  console.log( $('.cryptocurrency').val())
-
+  console.log(parseInt($('.currency').val()));
   if ($('.currency').val() === '0' && $('.cryptocurrency').val() === '0') {
-    console.log('hey now')
     modal.css({
-      'display':'block'
+      'display': 'block'
     });
-    
+
     return
 
+  }else if($('.currency').val() === '' || $('.cryptocurrency').val() === ''){
+    modal.css({
+      'display': 'block'
+    });
+    return
   }
 
 
@@ -243,7 +247,7 @@ $("#exchange_button").on("click", function (event) {
         var data = google.visualization.arrayToDataTable(arrayOfArrays);
 
         var options = {
-          fontName: 'OpenSans',
+          fontName: 'Open Sans',
           vAxis: {
             title: 'Currency'
           },
