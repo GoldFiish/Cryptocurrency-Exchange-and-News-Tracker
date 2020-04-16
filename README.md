@@ -8,12 +8,12 @@ Finally the application, when the user clicks the "EXCHANGE RATE" button, presen
 
 The site uses the following API's:
 
-Exchange rate: 		https://exchangeratesapi.io/
-Historical value: 	https://docs.coinranking.com/
-News articles: 		https://newsapi.org/
+* Exchange rate: 		https://exchangeratesapi.io/
+* Historical value: 	https://docs.coinranking.com/
+* News articles: 		https://newsapi.org/
 
 The site is responsive and supports all kinds of devices and screen widths, and was made using the Materialize CSS framework.
 
-A screen shot (CryptoCurrencyExchangeHome.png) is included with the files.
+A screen shot named CryptoCurrencyExchangeHome.png is included with the files.
 
-You can see our website on GitHub pages at:
+You can [check out this app on GitHub pages](https://mazdamike.github.io/Cryptocurrency-Exchange-and-News-Tracker/)
