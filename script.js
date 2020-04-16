@@ -109,25 +109,22 @@ $('.cryptocurrency').on('click', function () {
 })
 
 $('#mButton').on('click', function () {
-   modal.css({
-     'display':'none'
-   })
-  
+  modal.css({
+    'display': 'none'
+  })
+
 })
 
 
 // On-click functiion to get and display news articles
 $("#exchange_button").on("click", function (event) {
   // event.preventDefault();
-  console.log($('.currency').val())
-  console.log( $('.cryptocurrency').val())
 
   if ($('.currency').val() === '0' && $('.cryptocurrency').val() === '0') {
-    console.log('hey now')
     modal.css({
-      'display':'block'
+      'display': 'block'
     });
-    
+
     return
 
   }
