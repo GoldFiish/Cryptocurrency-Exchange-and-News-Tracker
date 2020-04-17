@@ -6,7 +6,7 @@ body {
 }
 
 /* css grouping */
-.nav-wrapper, .btn, .page-footer {
+.nav-wrapper, .page-footer {
     background-color: #FFAA01;
 } 
 
@@ -48,12 +48,13 @@ body {
 
 /* button */
 .btn {
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 50px;
+    background-color: #0B2858;
 }
 
 .btn:hover {
-    background-color: #071D2E;
+    background-color: #FFAA01;
 }
 
 /* articles */
@@ -64,8 +65,9 @@ body {
     height: 750px;
     width: 100%;
     display: table;
-    padding: 0 15px;;
-    margin-bottom: 50px;
+    padding: 0 15px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     transition: ease-out .8s;
 }
 
@@ -78,6 +80,7 @@ body {
 /* footer */
 .page-footer {
     text-align: center;
+    margin-top: 60px;
 }
 
 #input, label, .social-media a {

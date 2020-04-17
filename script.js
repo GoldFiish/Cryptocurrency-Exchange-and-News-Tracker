@@ -23,7 +23,7 @@ var cryptoQuery = 'https://api.coinranking.com/v1/public/coins'
 var historyQuery = 'https://api.coinranking.com/v1/public/coin/' + coinID + '?base=USD&timePeriod=7d'
 var modal = $('<div>').text('Please Enter a Cryptocurrency/International Currency Amount');
 var modalButton = $('<a>').text('Understood');
-modalButton.addClass('waves-effect waves-light btn');
+modalButton.addClass('btn');
 modalButton.attr('id', 'mButton');
 modal.addClass('row')
 modal.css({
