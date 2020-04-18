@@ -3,7 +3,6 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
 });
 
-
 ///////create ajaxcalls to retrieve info ////////
 
 var apiKey = null;
